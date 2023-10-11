@@ -8,9 +8,8 @@ formulario.addEventListener("submit", function(event) {
     const mesaje = event.target.mensaje.value;
     const imagen = event.target.imagen.value;
 
-    let object =[{nombre:`${nombre}`},{email:`${email}`}, {mensaje: `${mesaje}`}, {imagen:`${imagen}`}]
-    
-    console.log(object)
-    return object
+    const usuario =[{nombre:`${nombre}`},{email:`${email}`}, {mensaje: `${mesaje}`}, {imagen:`${imagen}`}]
+    localStorage.setItem("user", JSON.stringify(usuario));
 
+    console.log(usuario)
 })
