@@ -10,17 +10,13 @@ formulario.addEventListener("submit", function(event) {
     const email = event.target.email.value;
     const mesaje = event.target.mensaje.value;
     const imagen = event.target.imagen.value;
-    
-    let pintar = `nombre:${nombre}\n
-                    email:${email}\n
-                    mensaje: ${mesaje}\n
-                    imagen:${imagen}\n`
-
-    let p = document.createTextNode(pintar);
-    document.body.appendChild(p);
 
 
-    const usuario ={
+//let p = document.createTextNode(pintar);
+    //document.body.appendChild(p);
+
+
+    let usuario ={
         nombre:`${nombre}`,
         email:`${email}`, 
         mensaje: `${mesaje}`, 
@@ -31,5 +27,30 @@ formulario.addEventListener("submit", function(event) {
     
     nuevoUser.push(usuario);
     localStorage.setItem("listaUsers", JSON.stringify(nuevoUser));
+    let datospintar = JSON.parse(localStorage.getItem("listaUsers"));
+    console.log(datospintar);
+    let x = datospintar.length -1;
+    let pintar = `<p><b>Nombre:</b> ${datospintar[x].nombre}</p>
+                        <p><b>E-mail:</b> ${datospintar[x].email}</p>
+                        <p><b>Mensaje:</b> ${datospintar[x].mensaje}</p>
+                        <p><b>Url Imagen:</b> ${datospintar[x].imagen}</p>`
+        
+    document.getElementById("pintar").innerHTML += pintar;
+
+/*
+    let datospintar = JSON.parse(localStorage.getItem("listaUsers"));
+    console.log(datospintar);
+    datospintar.forEach(element => {
+        let pintar = `<p><b>Nombre:</b> ${element.nombre}</p>
+                        <p><b>E-mail:</b> ${element.email}</p>
+                        <p><b>Mensaje:</b> ${element.mensaje}</p>
+                        <p><b>Url Imagen:</b> ${element.imagen}</p>`
+
+    
+            document.getElementById("pintar").innerHTML = pintar;                
+    
+    });
+        
+        */
 
 })
