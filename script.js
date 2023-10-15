@@ -11,11 +11,6 @@ formulario.addEventListener("submit", function(event) {
     const mesaje = event.target.mensaje.value;
     const imagen = event.target.imagen.value;
 
-
-//let p = document.createTextNode(pintar);
-    //document.body.appendChild(p);
-
-
     let usuario ={
         nombre:`${nombre}`,
         email:`${email}`, 
@@ -24,11 +19,11 @@ formulario.addEventListener("submit", function(event) {
     }
     
     let nuevoUser = JSON.parse(localStorage.getItem("listaUsers"));
-    
     nuevoUser.push(usuario);
     localStorage.setItem("listaUsers", JSON.stringify(nuevoUser));
     let datospintar = JSON.parse(localStorage.getItem("listaUsers"));
     console.log(datospintar);
+    
     let x = datospintar.length -1;
     let pintar = `<p><b>Nombre:</b> ${datospintar[x].nombre}</p>
                         <p><b>E-mail:</b> ${datospintar[x].email}</p>
@@ -37,20 +32,12 @@ formulario.addEventListener("submit", function(event) {
         
     document.getElementById("pintar").innerHTML += pintar;
 
-/*
-    let datospintar = JSON.parse(localStorage.getItem("listaUsers"));
-    console.log(datospintar);
-    datospintar.forEach(element => {
-        let pintar = `<p><b>Nombre:</b> ${element.nombre}</p>
-                        <p><b>E-mail:</b> ${element.email}</p>
-                        <p><b>Mensaje:</b> ${element.mensaje}</p>
-                        <p><b>Url Imagen:</b> ${element.imagen}</p>`
-
-    
-            document.getElementById("pintar").innerHTML = pintar;                
-    
+    document.getElementById("borrarTodo").addEventListener("click", function() {
+        if (localStorage.getItem("listaUsers")) {
+            localStorage.removeItem("listaUsers");
+            alert("Lista de usuarios eliminada");
+        } else {
+            alert("No existe lista de usuarios");
+        }
     });
-        
-        */
-
 })
